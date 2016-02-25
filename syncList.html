@@ -3,7 +3,7 @@
 
     <label class="control-label">Selected</label>
     <div class="form-group pre-scrollable" style="max-height: 200px; border: 1px solid #d8dde6; border-radius: 0.25rem;">
-      <div class="checkbox" data-ng-repeat="item in firstListModel">
+      <div class="checkbox" data-ng-repeat="item in firstListModel  | orderBy : nameField ">
         <label for="item{{ item[idField] }}Checkbox">
           <input type="checkbox" name="item{{ item[idField] }}" id="item{{ item[idField] }}Checkbox" 
           data-ng-init="item.selected = true"
@@ -17,7 +17,7 @@
   
     <label class="control-label">All</label>
     <div class="form-group pre-scrollable" style="max-height: 200px; border: 1px solid #d8dde6; border-radius: 0.25rem;">
-      <div class="checkbox" data-ng-repeat="item in itemList = (secondListModel | filter:{selected:'!true'})">
+      <div class="checkbox" data-ng-repeat="item in itemList = (secondListModel | filter:{selected:'!true'}  | orderBy : nameField )">
         <label for="item{{ item[idField] }}Checkbox">
           <input type="checkbox" name="item{{ item[idField] }}" id="item{{ item[idField] }}Checkbox" 
           data-ng-init="item.selected = isChecked(item[idField])"

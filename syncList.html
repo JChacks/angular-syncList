@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 form-group">
+
+    <label class="control-label">Selected</label>
+    <div class="form-group pre-scrollable" style="max-height: 200px; border: 1px solid #d8dde6; border-radius: 0.25rem;">
+      <div class="checkbox" data-ng-repeat="item in firstListModel">
+        <label for="item{{ item[idField] }}Checkbox">
+          <input type="checkbox" name="item{{ item[idField] }}" id="item{{ item[idField] }}Checkbox" 
+          data-ng-init="item.selected = true"
+          data-ng-change="sync(item)" 
+          data-ng-model="item.selected"> {{ item[nameField] }}
+        </label>
+        {{ "Is checked?"+isChecked(item[idField]) }}
+      </div>
+      <div data-ng-hide="firstListModel.length">Please select a item...</div>
+    </div>
+  
+    <label class="control-label">All</label>
+    <div class="form-group pre-scrollable" style="max-height: 200px; border: 1px solid #d8dde6; border-radius: 0.25rem;">
+      <div class="checkbox" data-ng-repeat="item in itemList = (secondListModel | filter:{selected:'!true'})">
+        <label for="item{{ item[idField] }}Checkbox">
+          <input type="checkbox" name="item{{ item[idField] }}" id="item{{ item[idField] }}Checkbox" 
+          data-ng-init="item.selected = isChecked(item[idField])"
+          data-ng-change="sync(item)" 
+          data-ng-model="item.selected"> {{ item[nameField] }}
+        </label>
+        {{ "Is checked?"+isChecked(item[idField]) }}
+      </div>
+    <div data-ng-hide="itemList.length>0">No items available!</div>
+    </div>
+    
+  </div>
+</div>
